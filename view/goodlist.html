@@ -1,0 +1,38 @@
+<table ng-cloak class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Title</th>
+            <th scope="col">Image`s url</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Qty</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr id="it{{$index}}" ng-repeat="item in goodsonPage" ng-if="item.category == categorySelected || categorySelected == 'Всі категорії'" ng-init="item.disableInputs = true; item.disableQty = true; item.titleButton = 'Edit'; item.titleButtonQty = 'Change qty'; item.titleButtonTwo = 'Delete';">
+            <td><input type="button" ng-value="item.titleButton" ng-click="item.disableInputs ? editData(item, $index) : saveData(item, $index)" class="btn btn-outline-secondary btn-customsize"></td>
+            <td><input type="button" ng-value="item.titleButtonTwo" ng-click="item.disableInputs ? delProduct(item) : returnData(item, $index)" class="btn btn-outline-secondary btn-customsize"></td>
+            <td><input type="text" autocomplete="off" required ng-disabled="item.disableInputs" ng-model="item.name" class="form-control" ng-class="{ 'transparent-border': item.disableInputs }"></td>
+            <td><input type="text" autocomplete="off" required ng-disabled="item.disableInputs" ng-model="item.img" class="form-control" ng-class="{ 'transparent-border': item.disableInputs }"></td>
+            <td>
+                <input type="text" ng-value="item.category" required disabled ng-show="item.disableInputs" class="form-control" ng-class="{ 'transparent-border': item.disableInputs }">
+                <select ng-options="items for items in category" ng-model="newCategorGood[$index]" ng-hide="item.disableInputs" class="form-control"></select>
+            </td>
+            <td><input type="text" autocomplete="off" required ng-disabled="item.disableInputs" ng-model="item.price" class="form-control" ng-class="{ 'transparent-border': item.disableInputs }"></td>
+
+
+            <td><input type="button" ng-value="item.titleButtonQty" ng-click="item.disableQty ? editQty(item, $index) : saveQty(item, $index)" class="btn btn-outline-secondary btn-customsize2"></td>
+            <td><input type="button" value="Return" ng-click="returnQty(item, $index)" class="btn btn-outline-secondary" ng-class="{ 'transparent-button': item.disableQty }"></td>
+            <td><input type="text" autocomplete="off" required ng-disabled="item.disableQty" ng-model="item.count" class="form-control" ng-class="{ 'transparent-border': item.disableQty }"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div ng-include="'view/pagin.html'" ng-show="objPage.totalPage > 1" class="col-md-12"></div>

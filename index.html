@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>#</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/lib.js"></script>
+        <script src="frameworks/jquery.js"></script>
+        <script src="frameworks/bootstrap.js"></script>
+        <script src="frameworks/angular.js"></script>
+        <script src="frameworks/angular-cookies.js"></script>
+        <script src="js/cart.js"></script>
+        <script src="js/product.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="frameworks/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    </head>
+
+
+    <body ng-controller="mainCtrl">
+
+
+        <div ng-controller="productCtrl" ng-cloak class="container">
+
+
+            <!--                inicialize user & button to change global views-->
+            <div class="row">
+                <div ng-controller="personalizeCtrl" class="login bg-dark text-white">
+                    <!--                        visualizing user info-->
+                    <div class="logs">
+                        <div ng-show="fvisible" class="logindata">  
+                            <img ng-src="{{fuser.photos}}" ng-show="fuser.photos" alt="NoFhoto"/>
+                            <div class="namemail">
+                                <div>{{fuser.name}}</div>
+                                <div>{{fuser.email}}</div>
+                            </div>
+                        </div>
+                        <!--                        loging form-->
+                        <div class="login-forms">
+                            <form method="post" action="/login" ng-hide="fvisible" class="user-form">
+                                <div>
+                                    <label>login </label>
+                                    <input type="text" name="username" autocomplete="username" class="input-sm">
+                                </div>
+                                <div>
+                                    <label>password </label>
+                                    <input type="password" name="password" class="input-sm">
+                                    <button type="submit" ng-hide="fvisible" class="btn btn-info">
+                                        <i class="fas fa-sign-in-alt"></i> Input
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="init-button">
+                                <a href="/auth/facebook" ng-hide="fvisible" class="btn btn-info"> <!--Facebook loging-->
+                                    <i class="fab fa-facebook-square"></i> Facebook
+                                </a>
+                                <button data-toggle="modal" data-target="#modalWindow2" ng-show="!fvisible" class="btn btn-info">Реєстрація</button>
+                                <button ng-click="logOutUser()" ng-show="fvisible" class="btn btn-danger">
+                                    <i class="fas fa-sign-out-alt"></i> LogOut
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                        button to change global views-->
+                    <div class="inline1">
+                        <button ng-click="showPage()" class="btn btn-light">
+                            <i class="fas fa-shopping-cart fa-2x"></i>
+                            <span ng-show="cart" class="badge badge-dark badge-pill align-top">{{cart}}</span>
+                            {{current.button}}</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--                name of view & sorting properties for goods-->
+            <div class="row bg-info text-white head-second">
+                <div class="col-sm-3">
+                    <h1>{{current.header}}</h1>
+                </div>
+                <div ng-hide="current.view == 'view/cart.html'" class="col-sm-9 sorting-block">
+                    <div class="inline">
+                        <div class="inline1">
+                            <label>Категорія</label><br>
+                            <select ng-options="item for item in category" ng-model="categorySelected" ng-change="_category.changeCategory()" class="form-control form-control-sm">
+                            </select>
+                        </div>
+                        <div class="inline1">
+                            <label>Сортування</label><br>
+                            <select ng-options="item.title for item in direction" ng-model="directionSelected" ng-change="_direction.changeDirection()" class="form-control form-control-sm">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--                global view-->
+            <div class="row bg-secondary">
+                <div id="main" ng-controller="cartCtrl" ng-include="current.view" class="col-md-12"></div>
+            </div>
+
+
+            <!--                footer-->
+            <div class="row bg-dark text-white">
+                <div class="col-md-12 center">
+                    <h5>footer</h5>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <!--        modal for create of new user-->
+        <div id="modalWindow2" ng-include="'view/modals/newuser.html'" tabindex="-1" role="dialog" class="modal fade"></div>
+
+
+    </body>
+
+
+</html>

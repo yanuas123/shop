@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>#</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/lib.js"></script>
+        <script src="frameworks/jquery.js"></script>
+        <script src="frameworks/bootstrap.js"></script>
+        <script src="frameworks/angular.js"></script>
+        <script src="js/goodlist.js"></script>
+        <script src="js/orderlist.js"></script>
+        <script src="admin.js"></script>
+        <link rel="stylesheet" type="text/css" href="frameworks/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/admin.css">
+    </head>
+    <body ng-controller="mainCtrl">
+
+
+        <div class="container-fluid" ng-controller="goodCtrl">
+
+
+            <!--            header content-->
+            <div class="row bg-secondary text-white">
+                <div class="col-md-3">
+                    <h1>Адмін</h1>
+                </div>
+                <div class="col-md-9">
+                    <div role="group" aria-label="Basic example" class="btn-group float-right m-2">
+                        <input type="button" id="addButton" value="Додати товар" data-toggle="modal" data-target="#modalGood" ng-show="current.buttons" class="btn btn-primary">
+                        <input type="button" id="addButton2" value="Додати категорію" data-toggle="modal" data-target="#modalCategory" ng-show="current.buttons" class="btn btn-primary">
+                        <input type="button" ng-value="current.button" ng-click="showPage()" class="btn btn-primary">
+                        <input type="button" value="Вийти" ng-click="logoutadmin()" class="btn btn-danger">
+                    </div>
+                    <div ng-show="current.buttons" class="float-right m-2">
+                        <select ng-options="item for item in category" ng-model="categorySelected" ng-change="_category.changeCategory()" class="form-control"></select>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--            global view-->
+            <div ng-include="current.view" class="row" id="main"></div>
+
+
+        </div>
+
+
+        <!--        modal for adding new good-->
+        <div id="modalGood" tabindex="-1" role="dialog" ng-include="'/view/modals/newgood.html'" class="modal fade"></div>
+        <!--        modal for adding new category-->
+        <div id="modalCategory" tabindex="-1" role="dialog" ng-include="'/view/modals/newcategory.html'" class="modal fade"></div>
+
+
+    </body>
+</html>

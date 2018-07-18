@@ -1,0 +1,28 @@
+<div role="document" class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="text-danger">Всі поля обов'язкові для заповнення</span>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form name="good">
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Fisr and Last name" autocomplete="name" required ng-model="client.name" class="form-control" ng-class="{'is-invalid': !client.name}" id="cartModalName">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" autocomplete="email" required ng-model="client.email" class="form-control" ng-class="{'is-invalid': (!good.email || good.email.$invalid)}" id="cartModalEmail">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="address" placeholder="Address" autocomplete="address-level4" required ng-model="client.address" class="form-control" ng-class="{'is-invalid': !client.address}">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span ng-hide="fvisible" class="text-danger">Ви можете зареєструватися та увійти в обліковий запис для автозаповнення</span>
+                <button type="button" data-dismiss="modal" class="btn btn-secondary">Відміна</button>
+                <input type="button" value="Відправити" ng-disabled="good.$invalid" ng-click="sendOrder()" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>

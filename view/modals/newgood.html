@@ -1,0 +1,43 @@
+<div role="document" class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <form name="myform" novalidate>
+            <div class="modal-body">
+                <input type="text" name="name" placeholder="Name of good" autocomplete="off" required ng-model="newgood.name" class="form-control">
+                <label>Категорія:</label><br>
+                <select ng-options="item for item in category" ng-model="newgood.category" class="form-control"></select>
+                <input type="number" name="price" placeholder="price" autocomplete="off" required ng-model="newgood.price" class="form-control">
+                <input type="number" name="count" placeholder="quantity" autocomplete="off" required ng-model="newgood.count" class="form-control">
+                <input type="text" name="img" placeholder="url" required disabled ng-model="newgood.img" class="form-control">
+            </div>
+        </form>
+
+
+        <!--        form for downloading image of new good to the server-->
+        <form method="post" enctype="multipart/form-data" action="/uploadFile" target="result"> <!-- target for getting image-url without reload -->
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <input type="file" name="upl" id="upl" required ng-disabled="newgood.img" class="custom-file-input input-file-height">
+                    <label for="upl" class="form-control">{{file_field}}</label>
+                    <div class="input-group-append">
+                        <button type="submit" ng-disabled="newgood.img" class="btn btn-info">Надіслати</button>
+                    </div>
+                </div>
+                <div class="invalid-feedback">Файл не вибрано</div>
+            </div>
+        </form>
+        <iframe name="result" get-url></iframe> <!-- hidded target for getting url of dowloaded image -->
+
+
+        <div class="modal-footer">
+            <span ng-show="myform.name.$error.required && myform.name.$dirty">Поле не повинне бути пустим!</span>
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">Відміна</button>
+            <input type="button" value="Зберегти" data-dismiss="modal" ng-disabled="myform.$invalid" ng-click="newProduct()" class="btn btn-primary">
+        </div>
+    </div>
+</div>

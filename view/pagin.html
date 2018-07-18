@@ -1,0 +1,21 @@
+<div class="col-md-12 d-flex justify-content-center">
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" ng-click="setPage(1, true)">First</a>
+            </li>
+            <li class="page-item"  ng-class="{'disabled': objPage.currentPage === 1}">
+                <a class="page-link pagin-prev" href="#" tabindex="-1" ng-click="setPage((objPage.currentPage - 1), true)">Previous</a>
+            </li>
+            <li class="page-item" ng-repeat="item in objPage.pages" ng-class="{active: item === objPage.currentPage}">
+                <a class="page-link" href="#" ng-click="setPage(item, true)">{{item}}</a>
+            </li>
+            <li class="page-item" ng-class="{'disabled': objPage.currentPage === objPage.totalPage}">
+                <a class="page-link pagin-next" href="#" ng-click="setPage((objPage.currentPage + 1), true)">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" ng-click="setPage(objPage.totalPage, true)">End</a>
+            </li>
+        </ul>
+    </nav>
+</div>

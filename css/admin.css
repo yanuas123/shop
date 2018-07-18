@@ -1,0 +1,38 @@
+iframe {
+    display: none;
+}
+.top-space {
+    margin-top: 55px;
+}
+.input-file-height {
+    height: 0;
+}
+
+
+
+.transparent-border {
+    border: 1px solid rgba(355,355,355,0);
+    background-color: rgba(355,355,355,0) !important;
+}
+.transparent-button {
+    opacity: 0 !important;
+    cursor: default !important;
+}
+.btn-customsize {
+    width: 70px;
+}
+.btn-customsize2 {
+    width: 110px;
+}
+
+
+
+form input[type="text"], form input[type="number"] {
+    margin-top: 12px;
+}
+form .ng-dirty.ng-invalid {
+    background-color: lightpink;
+}
+form .ng-pristine {
+    background-color: lightblue;
+}

@@ -1,0 +1,20 @@
+<div class="row">
+    <!--    product item-->
+    <div ng-repeat="item in goodsonPage" class="col-md-3 card card-product">
+        <img ng-src="../{{::item.img}}" class="card-img-top img-size">
+        <div class="card-unit">
+            <p class="card-title h6">{{::item.name}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Категорія: {{::item.category}}</li>
+            <li class="list-group-item">Ціна: {{::item.price}} грн.</li>
+        </ul>
+        <div class="card-unit card-unit-last">
+            <input type="button" value="Купити" ng-click="buy(item)" class="btn btn-primary btn-block btn-bottom">
+        </div>
+    </div>
+</div>
+
+
+<!--pagination view-->
+<div ng-include="'../view/pagin.html'" ng-show="objPage.totalPage > 1" class="row"></div>

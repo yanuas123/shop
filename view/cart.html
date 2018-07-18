@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12 bg-white py-5">
+        <div class="container-fluid">
+
+
+            <!--           list of orders-->
+            <div ng-repeat="item in cart" class="row my-5">
+                <div class="col-md-3">
+                    <img ng-src="../{{::item.img}}" class="img-fluid">
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h2>{{::item.name}}</h2>
+                        </li>
+                        <li class="list-group-item">
+                            Категорія: {{::item.category}}
+                        </li>
+                        <li class="list-group-item">
+                            Ціна: {{::item.price}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <div class="float-qt">
+                        Кількість:
+                        <div class="d-sm-inline-block">
+                            <button ng-click="changeQuantity(item, false)" class="btn btn-light"><i class="far fa-minus-square fa-2x"></i></button>
+                            {{item.qt}}
+                            <button ng-click="changeQuantity(item, true)" class="btn btn-light"><i class="far fa-plus-square fa-2x"></i></button>
+                        </div>
+                    </div>
+                    <div class="my-5 float-sum">
+                        Сума: {{item.sum}} грн
+                    </div>
+                </div>
+                <div class="col-md-2 py-4 del-button">
+                    <button ng-click="delGood(item)" class="btn btn-light"><i class="far fa-times-circle fa-3x"></i></button>
+                </div>
+            </div>
+
+
+            <!--              button for openmodal for sending of orders-->
+            <div class="row">
+                <div class="col-md-12 py-4">
+                    <button ng-disabled="!cart.length" ng-click="showModal()" class="btn btn-primary btn-lg">Оформити замовлення</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!--modal-form for sending of orders-->
+<div id="modalWindow" tabindex="-1" role="dialog" ng-include="'../view/modals/order.html'" class="modal fade"></div>

@@ -1,0 +1,33 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form name="myform">
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" ng-class="{'is-invalid': !newuser.name }" ng-model="newuser.name" placeholder="Your First and Last name *" autocomplete="name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" ng-class="{'is-invalid': (!newuser.email || myform.email.$invalid)}" ng-model="newuser.email" placeholder="Email *" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newuser.address" name="address" placeholder="Address" autocomplete="address-level4">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" ng-class="{'is-invalid': (!newuser.password || myform.password.$invalid)}" ng-model="newuser.password" placeholder="Password *" required>
+                </div>
+                <label>Повторіть пароль</label>
+                <input type="password" name="password2" class="form-control" ng-class="{'is-invalid': (!newuser.password2 || myform.password2.$invalid || (newuser.password !== newuser.password2))}" ng-model="newuser.password2" placeholder="Password *" required>
+                <div class="invalid-feedback" ng-show="(newuser.password !== newuser.password2) && (newuser.password && newuser.password2) && myform.password2.$dirty">Пароль введений невірно</div>
+            </div>
+            <div class="modal-footer">
+                <span ng-show="myform.name.$error.required && myform.name.$dirty">Поле не повинне бути пустим!</span>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Відміна</button>
+                <input type="submit" class="btn btn-primary" value="Зареєструвати" ng-disabled="myform.$invalid || (newuser.password !== newuser.password2)" ng-click="addUser()" data-dismiss="modal">
+            </div>
+        </form>
+    </div>
+</div>

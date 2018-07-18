@@ -1,0 +1,59 @@
+<div class="col-md-12" ng-controller="orderCtrl">
+
+
+    <div ng-repeat="item in orders" class="row">
+        <div class="col-md-12">
+
+
+            <!--            users datas-->
+            <div class="row top-space">
+                <div class="col-md-3">
+                    <h3>{{::item.name}}</h3>
+                </div>
+                <div class="col-md-5">
+                    <span>адреса: {{::item.address}}</span>
+                </div>
+                <div class="col-md-2">
+                    <span>email: {{::item.email}}</span>
+                </div>
+                <div class="col-md-2">
+                    <input type="button" value="Підтвердити" ng-click="confirm(item)" class="btn btn-primary">
+                </div>
+            </div>
+
+            <!--            goods-->
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Назва</th>
+                            <th scope="col">Категорія</th>
+                            <th scope="col">Кількість-склад</th>
+                            <th scope="col">Ціна</th>
+                            <th scope="col">Кількість</th>
+                            <th scope="col">Сума</th>
+                            <th scope="col">Вибрати</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="itemt in item.order" ng-init="itemt.checked = true"> <!-- list of goods -->
+                            <td>{{::itemt.name}}</td>
+                            <td>{{::itemt.category}}</td>
+                            <td>{{::itemt.count}}</td>
+                            <td>{{::itemt.price}} грн</td>
+                            <td>
+                                <input type="text" autocomplete="off" ng-model="itemt.qt" class="form-control">
+                            </td>
+                            <td>{{itemt.price * itemt.qt}} грн</td>
+                            <td>
+                                <input type="checkbox" ng-checked="itemt.checked" ng-model="itemt.checked" class="form-check-input">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
