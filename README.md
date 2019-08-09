@@ -2,6 +2,8 @@
 
 This a trial webshop created using Angular.js. The project contains the admin part for adding the data and the server is created on Node.js nad database MongoDB.
 
+> [Link on Heroku](https://shopang.herokuapp.com/)
+
 ## HTML Templates created using
 
 - HTML5
